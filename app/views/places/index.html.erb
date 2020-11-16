@@ -1,0 +1,11 @@
+<% @places.each do |place| %>
+
+				<div>
+					<div>
+						<%= attachment_image_tag place,:image, format: 'jpeg', class: "image", size:'200x150'%>
+					</div>
+					<div>
+						<span><%= place.name %></span>
+					</div>
+				</div>
+				<% end %>

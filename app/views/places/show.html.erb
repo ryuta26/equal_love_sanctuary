@@ -1,0 +1,78 @@
+<script type="text/javascript">
+  function initMap() {
+    var test ={lat: <%= @place.latitude %>, lng: <%= @place.longitude %>};
+    var map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 15, 
+              center: test
+              });
+    var transitLayer = new google.maps.TransitLayer();
+    transitLayer.setMap(map);
+
+    var contentString = '住所：<%= @place.address %>';
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+    var marker = new google.maps.Marker({
+                  position:test,
+                  map: map,
+                  title: contentString
+                 });
+
+     marker.addListener('click', function() {
+       infowindow.open(map, marker);
+     });
+  }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
+<style type="text/css">
+  #map { height: 500px;
+         width: 800px;}
+</style>
+
+
+<table border="1">
+				<tbody>
+					<tr>
+					    <th>地点名</th>
+						<td><%= @place.name %></td>
+					</tr>
+					<tr>
+					    <th>地域</th>
+					    <td><%= @place.area %></td>
+				    </tr>
+					<tr>
+					    <th>郵便番号</th>
+						<td><%= @place.postal_code %></td>
+					</tr>
+					<tr>
+					    <th>住所</th>
+						<td>
+							<%= @place.address %>
+							<div id="map"></div>
+						</td>
+						
+					</tr>
+					<tr>
+					    <th>曲名</th>
+						<td><%= @place.song.name %></td>
+					</tr>
+					<tr>
+					    <th>メンバー</th>
+					    <td>
+					    	<% @place.members.each do |member| %>
+								<%= member.name %>
+							<% end %>
+					    </td>
+					</tr>
+					<tr>
+					    <th>画像</th>
+						<td> <%= attachment_image_tag @place,:image, format: 'jpeg', class: "image", size:'400x300'%></td>
+					</tr>
+					<tr>
+					    <th>説明文</th>
+						<td><%= @place.body %></td>
+					</tr>
+				</tbody>
+			</table>

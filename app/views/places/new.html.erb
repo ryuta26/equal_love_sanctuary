@@ -1,0 +1,41 @@
+<%= form_with(model: @place,local: true) do |f| %>
+<p>
+    <%= f.label :name, '地点名' %>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :area, '地域'%>
+    <%= f.text_field :area %>
+  </p>
+  <p>
+    <%= f.label :postala_code, '郵便番号'%>
+    <%= f.text_field :postal_code %>
+  </p>
+  <p>
+    <%= f.label :address, '住所'%>
+    <%= f.text_field :address %>
+  </p>
+  <p>
+    <%= f.label :song, '曲名' %>
+		<%= f.collection_select :song_id, Song.all, :id, :name %>
+  </p>
+  <p>
+    <%= f.attachment_field :image %>
+  </p>
+  <p>
+    <%= f.label :member, 'メンバー' %>
+    <%= f.collection_check_boxes(:member_ids, Member.all, :id, :name) do |member| %> 
+      <%= member.label do %>
+        <%= member.check_box %>
+        <%= member.text %>
+      <% end %>
+    <% end %>
+  </p>
+  <p>
+    <%= f.label :body, '説明文' %>
+		<%= f.text_area :body %>
+  </p>
+
+  <%= f.submit '投稿する' %>
+<% end %>

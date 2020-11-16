@@ -4,7 +4,15 @@ class PlacesController < ApplicationController
     end
     
     def index
+        if params[:member_id]
+            @member = Member.find(params[:member_id])
+            @places = @member.places.all
+        elsif params[:song_id]
+            @song = Song.find(params[:song_id])
+            @places = @song.places.all
+        else
         @places = Place.all
+        end
     end
     
     def new

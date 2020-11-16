@@ -1,11 +1,165 @@
-<% @places.each do |place| %>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-3">
+			<table class="table">
+				<thead class="thead-light">
+					<th>メンバー検索</th>
+				</thead>
+				<tbody>
+					<tr>
+					<td><a href="/places?member_id=1">大谷 映美里</a></td>
+				</tr>
+				<tr>
+					<td><a href="/places?member_id=2">大場 花菜</a></td>
+				</tr>
+				<tr>
+					<td><a href="/places?member_id=3">音嶋 莉沙</a></td>
+				</tr>
+				<tr>
+					<td><a href="/places?member_id=4">齋藤 樹愛羅</a></td>
+				</tr>
+				<tr>
+					<td><a href="/places?member_id=5">齊藤 なぎさ</a></td>
+				</tr>
+				<tr>
+					<td><a href="/places?member_id=6">佐々木 舞香</a></td>
+				</tr>
+				<tr>
+					<td><a href="/places?member_id=7">佐竹 のん乃</a></td>
+				</tr>
+				<tr>
+					<td><a href="/places?member_id=8">髙松 瞳</a></td>
+				</tr>
+				<tr>
+					<td><a href="/places?member_id=9">瀧脇 笙古</a></td>
+				</tr>
+				<tr>
+					<td><a href="/places?member_id=10">野口 衣織</a></td>
+				</tr>
+				<tr>
+					<td><a href="/places?member_id=11">諸橋 沙夏</a></td>
+				</tr>
+				<tr>
+					<td><a href="/places?member_id=12">山本 杏奈</a></td>
+				</tr>
+				</tbody>
+			</table>
+			
+			<table class="table">
+				<thead class="thead-light">
+					<th>曲検索</th>
+				</thead>
+				<tbody>
+					<tr>
+					<td><a href="/places?song_id=1">=LOVE</a></td>
+				</tr>
+				<tr>
+					<td><a href="/places?song_id=2">記憶のどこかで</a></td>
+				</tr>
+				<tr>
+					<td><a href="/places?song_id=3">スタート！</a></td>
+				</tr>
+				<tr>
+					<td><a href="/places?song_id=4">僕らの制服クリスマス</a></td>
+				</tr>
+				<tr>
+					<td><a href="/places?song_id=5">届いてLOVE YOU</a></td>
+				</tr>
+				<tr>
+					<td><a href="/places?song_id=6">ようこそ！イコラブ沼</a></td>
+				</tr>
+				<tr>
+					<td><a href="/places?song_id=7">手遅れcaution</a></td>
+				</tr>
+				<tr>
+					<td><a href="/places?song_id=8">「部活中に目が合うなって思ってたんだ」</a></td>
+				</tr>
+				<tr>
+					<td><a href="/places?song_id=9">樹愛羅、助に来たぞ</a></td>
+				</tr>
+				<tr>
+					<td><a href="/places?song_id=10">Want you!Want you!</a></td>
+				</tr>
+				<tr>
+					<td><a href="/places?song_id=11">今、この船に乗れ！</a></td>
+				</tr>
+				<tr>
+					<td><a href="/places?song_id=12">アイカツハッピーエンド</a></td>
+				</tr>
+				<tr>
+					<td><a href="/places?song_id=13">探せ ダイヤモンドリリー</a></td>
+				</tr>
+				<tr>
+					<td><a href="/places?song_id=14">いらない ツインテール</a></td>
+				</tr>
+				<tr>
+					<td><a href="/places?song_id=15">虹の素</a></td>
+				</tr>
+				<tr>
+					<td><a href="/places?song_id=16">ズルいよ ズルいね</a></td>
+				</tr>
+				<tr>
+					<td><a href="/places?song_id=17">Sweetest girl</a></td>
+				</tr>
+				<tr>
+					<td><a href="/places?song_id=18">推しのいる世界</a></td>
+				</tr>
+				<tr>
+					<td><a href="/places?song_id=19">CAMEO</a></td>
+				</tr>
+				<tr>
+					<td><a href="/places?song_id=20">「君と私の歌」</a></td>
+				</tr>
+				<tr>
+					<td><a href="/places?song_id=21">My Voice Is For You</a></td>
+				</tr>
+				<tr>
+					<td><a href="/places?song_id=22">青春”サブリミナル”</a></td>
+				</tr>
+				</tbody>
+			</table>
 
-				<div>
-					<div>
-						<%= attachment_image_tag place,:image, format: 'jpeg', class: "image", size:'200x150'%>
-					</div>
-					<div>
-						<span><%= place.name %></span>
-					</div>
-				</div>
-				<% end %>
+			<% if params[:member_id] %>
+			    <% @member.name %>
+			<% elsif params[:song_id] %>
+				<% @song.name %>
+			<% end %>
+		</div>
+		<div class="col-xs-9">
+				<table class="table table-striped">
+					<thead class="thead-light">
+						<tr>
+							<th>画像</th>
+							<th>地点名</th>
+							<th>住所</th>
+							<th>メンバー</th>
+							<th>曲</th>
+						</tr>
+					</thead>
+					<tbody>
+							<% @places.each do |place| %>
+						<tr>
+							<td>
+								<%= attachment_image_tag place,:image, format: 'jpeg', class: "image", size:'100x75'%>
+							</td>
+							<td>
+								<span><%= link_to place.name,place_path(place) %></span>
+							</td>
+							<td>
+								<span><%= place.address %></span>
+							</td>
+							<td>
+								<% place.members.each do |member| %>
+								<span><%= member.name %></span><br>
+								<% end %>
+							</td>
+							<td>
+								<span><%= place.song.name %></span>
+							</td>
+						</tr>
+						<% end %>
+					</tbody>
+				</table>
+		</div>
+	</div>
+</div>

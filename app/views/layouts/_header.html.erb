@@ -1,17 +1,17 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
+<header class="navbar shadow-sm">
   <div class="container">
     <nav class='nav navbar-nav navbar-left' >
-      <span>Bookers</span>
+      <h3>=LOVE聖地巡礼マップ</h3>
     </nav>
     <nav>
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav navbar-right navbar-expand-lg">
         <% if user_signed_in? %>
-          <li><%= link_to ' Home',user_path(current_user),class: 'glyphicon glyphicon-home home' %></li>
-          <li><%= link_to ' logout', destroy_user_session_path, method: :delete,class: 'glyphicon glyphicon-log-out logout' %></li>
+          <li class="nav-item"><%= link_to ' Home',places_path,class: 'glyphicon glyphicon-home home' %></li>
+          <li class="nav-item"><%= link_to ' logout', destroy_user_session_path, method: :delete,class: 'glyphicon glyphicon-log-out logout' %></li>
         <% else %>
-          <li><%= link_to ' Home',root_path,class: 'glyphicon glyphicon-home home' %></li>
-          <li><%= link_to ' sign up', new_user_registration_path,class: 'glyphicon glyphicon-edit sign_up' %></li>
-          <li><%= link_to ' login', new_user_session_path ,class: 'glyphicon glyphicon-log-in sign_in'%></li>
+          <li class="nav-item"><%= link_to ' Home',root_path,class: 'glyphicon glyphicon-home home' %></li>
+          <li class="nav-item"><%= link_to ' sign up', new_user_registration_path,class: 'glyphicon glyphicon-edit sign_up' %></li>
+          <li class="nav-item"><%= link_to ' login', new_user_session_path ,class: 'glyphicon glyphicon-log-in sign_in'%></li>
         <% end %>
       </ul>
     </nav>

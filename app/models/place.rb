@@ -2,6 +2,7 @@ class Place < ApplicationRecord
     belongs_to :song
     has_many :relations
     has_many :members, through: :relations
+    belongs_to :user
     validates :address, presence: true
     attachment :image
     geocoded_by :address

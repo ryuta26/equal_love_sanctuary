@@ -1,2 +1,34 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-10">
+            <h3>マイページ</h3>
+            <table class="table">
+                <tbody>
+                        <tr>
+                            <th>ユーザID</th>
+                            <td><%= @user.id %></td>
+                        </tr>
+                        <tr>
+                            <th>ニックネーム</th>
+                             <%= form_with(model: @user,local: true) do |f| %>
+                            <td>
+                                <%= f.text_field :name %>
+                                <%= f.submit "ニックネーム更新" %>
+                            </td>
+                            <% end %>
+                        </tr>
+                        <tr>
+                            <th>メールアドレス</th>
+                            <td><%= @user.email %></td>
+                        </tr>
+                        <tr>
+                            <th>退会ボタン</th>
+                            <td>
+				                <%= link_to "退会する", user_path(@user), method: :delete, class: "btn  btn-danger	","data-confirm" => "本当に退会しますか？" %>
+				            </td>
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -33,6 +33,7 @@ class PlacesController < ApplicationController
         @place = Place.find(params[:id])
     end
     
+    
     private
     def place_params
         params.require(:place).permit(:name,:area,:postal_code,:address,:user_id,:song_id,:image,:latitude,:longitude,:body, member_ids: [])

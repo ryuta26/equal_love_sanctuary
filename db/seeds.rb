@@ -116,3 +116,8 @@ Member.create!(
     }
   ]
 )
+
+Admin.create!(
+   email: 'admin@admin',
+   password: 'admin123',
+)
